@@ -25,6 +25,14 @@
 	return [self unzipFileAtPath:path toDestination:destination overwrite:YES password:nil error:nil];
 }
 
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination completion:(void (^)(NSString * path))completion {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^{
+		BOOL result = [self unzipFileAtPath:path toDestination:destination];
+		if (result) {
+			completion(path);
+	    }
+	});
+}
 
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error {
 	// Begin opening

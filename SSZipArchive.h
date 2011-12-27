@@ -12,5 +12,6 @@
 
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination;
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination completion:(void (^)(NSString * path))completion;
 
 @end
